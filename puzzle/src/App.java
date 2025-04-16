@@ -6,7 +6,7 @@ public class App {
         // 程序的启动入口
         // 想打开谁的界面，只需要创建对象就可以了
         new LoginJFrame();
-//        new GameJFrame();
+        new GameJFrame();
 //        new RegisterJFrame();
 
     }
