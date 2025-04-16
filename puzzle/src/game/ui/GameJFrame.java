@@ -119,7 +119,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     private void initJFrame() {
         // 设置宽高
         this.setSize(603, 680);
-        this.setTitle("拼图小游戏");
+        this.setTitle("从零开始的异世界拼图小游戏");
         this.setAlwaysOnTop(true);
         // 设置界面居中
         this.setLocationRelativeTo(null);
@@ -300,7 +300,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             System.out.println("关于我们");
             // 创建一个弹窗对象
             JDialog jDialog =new JDialog();
-            ImageIcon jd = new ImageIcon("photo/image/about.png");
+            ImageIcon jd = new ImageIcon("photo/image/about.jpg");
             JLabel jLabel = new JLabel(jd);
             jLabel.setBounds(0,0,258,258);
             // 将图片添加到探窗当中
