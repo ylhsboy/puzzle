@@ -16,7 +16,10 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     int y;
     // 用于统计步数
     int step;
-    String path = "photo/image/lemu/lemu1/";
+
+    Random random = new Random();
+
+    String path = "photo/image/lemu/lemu"+(random.nextInt(12)+1)+"/";
     int[][] win = {
             {1, 2, 3, 4},
             {5, 6, 7, 8},
@@ -30,6 +33,9 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 
     JMenuItem accountItem = new JMenuItem("公众号");
 
+    JMenuItem lemu = new JMenuItem("蕾姆");
+    JMenuItem lamu = new JMenuItem("拉姆");
+    JMenuItem emilia = new JMenuItem("艾米利亚");
     // 游戏主界面
     public GameJFrame() {
         // 初始化界面
@@ -132,12 +138,29 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         JMenu functionJMenu = new JMenu("功能界面");
         JMenu aboutusJMenu = new JMenu("关于我们");
 
+        JMenu changeImage = new JMenu("更换图片");
+
+
+
         // 给条目绑定监听事件
+        lemu.addActionListener(this);
+        lamu.addActionListener(this);
+        emilia.addActionListener(this);
+
         replayItem.addActionListener(this);
         reloginItem.addActionListener(this);
         closeItem.addActionListener(this);
+
         accountItem.addActionListener(this);
+        //将改变图片放入功能界面当中
+        functionJMenu.add(changeImage);
+
         // 将对应条目添加到菜单对象当中
+        changeImage.add(lemu);
+        changeImage.add(lamu);
+        changeImage.add(emilia);
+        functionJMenu.add(changeImage);
+
         functionJMenu.add(replayItem);
         functionJMenu.add(reloginItem);
         functionJMenu.add(closeItem);
@@ -292,6 +315,39 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             jDialog.setModal(true);
             // 显示弹窗
             jDialog.setVisible(true);
+        }else if(obj == lemu){
+            System.out.println("选择蕾姆");
+            //更改图片路径
+            int n = random.nextInt(11)+1;
+            path = "photo/image/lemu/lemu" + n +"/";
+            //打乱数据
+            initData();
+            //计步器清零，一定要在加载图片的上方，否则加载的是上一次的数据
+            step = 0;
+            //重新加载图片
+            initImage();
+        }else if(obj == lamu){
+            System.out.println("选择拉姆");
+            //更改图片路径
+            int n = random.nextInt(12)+1;
+            path = "photo/image/lamu/lamu" + n +"/";
+            //打乱数据
+            initData();
+            //计步器清零，一定要在加载图片的上方，否则加载的是上一次的数据
+            step = 0;
+            //重新加载图片
+            initImage();
+        }else if(obj == emilia){
+            System.out.println("选择艾米莉亚");
+            //更改图片路径
+            int n = random.nextInt(5)+1;
+            path = "photo/image/emilia/emilia" + n +"/";
+            //打乱数据
+            initData();
+            //计步器清零，一定要在加载图片的上方，否则加载的是上一次的数据
+            step = 0;
+            //重新加载图片
+            initImage();
         }
     }
 }
