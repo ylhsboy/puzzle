@@ -16,13 +16,19 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     int y;
     // 用于统计步数
     int step;
-    String path = "photo/image/animal/animal2/";
+    String path = "photo/image/lemu/lemu1/";
     int[][] win = {
             {1, 2, 3, 4},
             {5, 6, 7, 8},
             {9, 10, 11, 12},
             {13, 14, 15, 0}
     };
+    // 创建条目对象
+    JMenuItem replayItem = new JMenuItem("重新游戏");
+    JMenuItem reloginItem = new JMenuItem("重新登录");
+    JMenuItem closeItem = new JMenuItem("关闭游戏");
+
+    JMenuItem accountItem = new JMenuItem("公众号");
 
     // 游戏主界面
     public GameJFrame() {
@@ -125,12 +131,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         // 创建两个菜单选项对象，功能界面和关于我们
         JMenu functionJMenu = new JMenu("功能界面");
         JMenu aboutusJMenu = new JMenu("关于我们");
-        // 创建条目对象
-        JMenuItem replayItem = new JMenuItem("重新游戏");
-        JMenuItem reloginItem = new JMenuItem("重新登录");
-        JMenuItem closeItem = new JMenuItem("关闭游戏");
 
-        JMenuItem accountItem = new JMenuItem("公众号");
         // 给条目绑定监听事件
         replayItem.addActionListener(this);
         reloginItem.addActionListener(this);
@@ -251,6 +252,46 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+        if (obj == replayItem) {
+            System.out.println("重新游戏");
+            //打乱数据
+            initData();
+            //计步器清零，一定要在加载图片的上方，否则加载的是上一次的数据
+            step = 0;
+            //重新加载图片
+            initImage();
 
+        } else if (obj == reloginItem) {
+            System.out.println("重新登录");
+            // 关闭游戏界面
+            this.setVisible(false);
+            // 打开登录界面
+            new LoginJFrame();
+
+        } else if (obj == closeItem) {
+            System.out.println("关闭游戏");
+            //直接关闭虚拟机
+            System.exit(0);
+        } else if (obj == accountItem) {
+            System.out.println("关于我们");
+            // 创建一个弹窗对象
+            JDialog jDialog =new JDialog();
+            ImageIcon jd = new ImageIcon("photo/image/about.png");
+            JLabel jLabel = new JLabel(jd);
+            jLabel.setBounds(0,0,258,258);
+            // 将图片添加到探窗当中
+            jDialog.getContentPane().add(jLabel);
+            // 设置弹窗大小
+            jDialog.setSize(344,344);
+            // 设置探窗置顶
+            jDialog.setAlwaysOnTop(true);
+            // 设置弹窗居中
+            jDialog.setLocationRelativeTo(null);
+            // 弹窗不关闭，就无法操作下面的界面
+            jDialog.setModal(true);
+            // 显示弹窗
+            jDialog.setVisible(true);
+        }
     }
 }
